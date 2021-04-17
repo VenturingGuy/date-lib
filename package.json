@@ -1,0 +1,26 @@
+{
+  "name": "date-lib",
+  "version": "1.0.0",
+  "description": "Date Library.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VenturingGuy/date-lib.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VenturingGuy/date-lib/issues"
+  },
+  "homepage": "https://github.com/VenturingGuy/date-lib#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
