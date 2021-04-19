@@ -1,7 +1,7 @@
 const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const day = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const dy = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const day = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const dy = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 class D {
     constructor(...args) {
@@ -113,16 +113,25 @@ class D {
      * @param {number} input a given date
      * @returns {string} a date formatted with respect to the input
      */
-    
+
     format(mask = "Y M D"){
         let zeroDate = value => value <= 9 ? '0' + value : value
         const masks = mask.split('')
         let formatOutput = ''
+        let sep = masks[1] + " "
+        
+        // Issue: Getting the formatting to work with spacing in mind. What could I do to ensure that the output is formatted to always
+        // be separated by the desired character?
+        
         masks.forEach((char) => {
-          let sep = masks[1]
-          if (masks[masks.indexOf(char) + 1] === ' '){
-            sep = ' '
+          // What does this really *do*? Why is it here, and what could I do to integrate the desired effect into
+          // the function in a more cohesive manner? Tying it to masks[1] isn't future proof nor a catch all.
+          // Potential solution: scrap the sep variable and simplify it to a join of some kind?
+          sep = masks[1]
+          if (masks[1] != " "){
+            sep = masks[1] + " "
           }
+
           switch (char) {
             case 'Y':
               formatOutput += (this.year + sep)
@@ -137,10 +146,10 @@ class D {
               formatOutput += (this.mon + sep)
               break
             case 'D':
-              formatOutput += (zeroDate(this._date.getDate()) + sep + " ")
+              formatOutput += (zeroDate(this._date.getDate()) + sep)
               break
             case 'd':
-              formatOutput += (this.date + sep + " ")
+              formatOutput += (this.date + sep)
               break
             case 'H':
               formatOutput += (zeroDate(this._date.getHours()) + sep)
@@ -155,14 +164,14 @@ class D {
               formatOutput += (this.mins + sep)
               break
             case 'S':
-              formatOutput += (zeroDate(this._date.getSeconds()) + sep + " ")
+              formatOutput += (zeroDate(this._date.getSeconds()) + sep)
               break
             case 's':
-              formatOutput += (this.secs + sep + " ")
+              formatOutput += (this.secs + sep)
               break
           }
         });
-        return formatOutput.slice(0, -2)
+        return formatOutput.trim()
     }
     /**
      * Method determines difference between current date/time and a given date/time.
@@ -216,4 +225,6 @@ class D {
     }
 }
 
-export default D;
+module.exports = {
+  D: D
+}
