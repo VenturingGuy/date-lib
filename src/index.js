@@ -113,6 +113,7 @@ class D {
      * @param {number} input a given date
      * @returns {string} a date formatted with respect to the input
      */
+    
     format(mask = "Y M D"){
         let zeroDate = value => value <= 9 ? '0' + value : value
         const masks = mask.split('')
@@ -215,14 +216,4 @@ class D {
     }
 }
 
-
-const d = new D(2020, 9, 19, 3, 4, 5)
-console.log(d.when()) // 6 months ago
-const e = new D(2021, 6, 19, 3, 4, 5)
-console.log(e.when()) // 3 months from now
-const f = new D(2026, 9, 3, 3, 4, 5)
-console.log(f.when()) // 5 years from now
-const g = new D(2022, 3, 17, 3, 4, 5)
-console.log(g.when()) // 3 days from now
-const h = new D()
-console.log(h.when()) // today
+export default D;
