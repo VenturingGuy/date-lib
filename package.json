@@ -1,5 +1,5 @@
 {
-  "name": "date-lib",
+  "name": "@venturingguy/date-lib",
   "version": "1.0.0",
   "description": "Date Library.",
   "main": "index.js",
